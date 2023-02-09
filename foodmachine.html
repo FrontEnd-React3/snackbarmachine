@@ -84,6 +84,15 @@
           name: 'hot sauce',
           price: 0.6
         },
+      ],
+      dessert: [{
+          name: 'icecream',
+          price: 0.4
+        },
+        {
+          name: 'cake',
+          price: 0.4
+        },
       ]
     }
 
@@ -95,10 +104,10 @@
 
     // create a function that can display halal food or non halal food
 
-    function MakeOrder(drank, eten, saus) {
+    function MakeOrder(drank, eten, saus, toetje) {
       let total_price = 0;
       // return an object with customer's order
-      console.log(drank, eten, saus)
+      console.log(drank, eten, saus, toetje)
 
       let drink_price = options.drink.find(function (product) {
         return product.name === drank
@@ -118,11 +127,19 @@
 
       total_price += sauce_price.price
 
+
+      let dessert_price = options.dessert.find(function (product) {
+        return product.name === toetje
+      })
+
+      total_price += dessert_price.price
+
       //  console.log(drink_price,food_price,sauce_price)
       const obj = {
         drink: drank,
         food: eten,
         sauce: saus,
+        dessert: toetje,
         total_price: total_price
       }
       /*
@@ -143,11 +160,11 @@
     function displayOrder(order) {
       // You ordered a cola, hamburger with ketchup and the total is 4.5 euro
       console.log(
-        `You ordered a ${order.drink}, ${order.food} with ${order.sauce} and the total is ${order.total_price} euro`)
+        `You ordered a ${order.drink}, ${order.food} with ${order.sauce} with ${order.dessert} and the total is ${order.total_price} euro`)
     }
 
     let order = MakeOrder('cola', 'fries',
-      'ketchup') // this function returns an object with product names and total_price
+      'ketchup', 'cake') // this function returns an object with product names and total_price
 
     displayOrder(order)
 
